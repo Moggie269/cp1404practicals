@@ -20,9 +20,9 @@ def get_valid_password(prompt, minimum_length):
     return password
 
 
-def print_stars(password):
+def print_stars(word):
     """Print as many stars as the word is long"""
-    print("*" * len(password))
+    print("*" * len(word))
 
 
 main()

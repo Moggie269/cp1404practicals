@@ -9,19 +9,19 @@ def main():
     """Let the user select an option from a menu."""
     score = get_valid_score("Score: ", 0, 100)
     print(MENU)
-    choice = input(">>>: ").upper()
-    while choice != 'Q':
-        if choice == 'G':
+    option = input(">>>: ").upper()
+    while option != 'Q':
+        if option == 'G':
             score = get_valid_score("Score: ", 0, 100)
-        elif choice == 'P':
+        elif option == 'P':
             result = determine_result(score)
             print(result)
-        elif choice == 'S':
+        elif option == 'S':
             print_stars(score)
         else:
             print("Invalid choice")
         print(MENU)
-        choice = input(">>>: ").upper()
+        option = input(">>>: ").upper()
     print("Farewell")
 
 
