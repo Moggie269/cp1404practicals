@@ -1,3 +1,7 @@
+"""
+CP1404/CP5632 - Practical
+Menu-driven number sequence generator
+"""
 MENU = "(E)ven numbers\n(O)dd numbers\n(S)quared numbers\n(Q)uit"
 
 first_number = int(input('First number: '))

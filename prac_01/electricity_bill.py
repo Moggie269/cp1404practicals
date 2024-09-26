@@ -1,3 +1,7 @@
+"""
+CP1404/CP5632 - Practical
+Electricity bill estimator
+"""
 TARIFF_11 = 0.244618
 TARIFF_31 = 0.136928
 
