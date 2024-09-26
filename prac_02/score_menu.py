@@ -6,7 +6,8 @@ MENU = "(G)et score\n(P)rint result\n(S)how stars\n(Q)uit"
 
 
 def main():
-    score = 0
+    """Let the user select an option from a menu."""
+    score = get_valid_score("Score: ", 0, 100)
     print(MENU)
     choice = input(">>>: ").upper()
     while choice != 'Q':
@@ -25,6 +26,7 @@ def main():
 
 
 def get_valid_score(prompt, low, high):
+    """Get a valid score."""
     score = int(input(prompt))
     while score < low or score > high:
         print("Invalid score")
@@ -33,6 +35,7 @@ def get_valid_score(prompt, low, high):
 
 
 def determine_result(score):
+    """Determine result based on score."""
     if score >= 90:
         return "Excellent"
     elif score >= 50:
@@ -42,6 +45,7 @@ def determine_result(score):
 
 
 def print_stars(score):
+    """Print a number of stars."""
     print("*" * score)
 
 
