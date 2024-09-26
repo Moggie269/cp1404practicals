@@ -10,7 +10,7 @@ def main():
     choice = input(">>>: ").upper()
     while choice != 'Q':
         if choice == 'G':
-            pass
+            score = get_valid_score("Score: ", 0, 100)
         elif choice == 'P':
             pass
         elif choice == 'S':
@@ -20,3 +20,14 @@ def main():
         print(MENU)
         choice = input(">>>: ").upper()
     print("Farewell")
+
+
+def get_valid_score(prompt, low, high):
+    score = int(input(prompt))
+    while score < low or score > high:
+        print("Invalid score")
+        score = int(input(prompt))
+    return score
+
+
+main()
