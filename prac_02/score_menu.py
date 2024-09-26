@@ -2,6 +2,8 @@
 CP1404/CP5632 - Practical
 Score menu program
 """
+MENU = "(G)et score\n(P)rint result\n(S)how stars\n(Q)uit"
+
 
 def main():
     print(MENU)
