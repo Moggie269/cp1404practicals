@@ -16,7 +16,7 @@ def main():
             result = determine_result(score)
             print(result)
         elif choice == 'S':
-            pass
+            print_stars(score)
         else:
             print("Invalid choice")
         print(MENU)
@@ -39,6 +39,10 @@ def determine_result(score):
         return "Passable"
     else:
         return "Bad"
+
+
+def print_stars(score):
+    print("*" * score)
 
 
 main()
