@@ -12,3 +12,6 @@ Questions related to the Python random module.
 #
 # What did you see on line 3? -> 2.86178224756525
 # What was the smallest number you could have seen, what was the largest? min = 2.5, max = 5.499999999999999
+
+import random
+print(random.randint(1,100))
