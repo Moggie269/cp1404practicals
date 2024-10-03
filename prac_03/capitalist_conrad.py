@@ -14,10 +14,12 @@ MAX_DECREASE = 0.05  # 5%
 MIN_PRICE = 0.01
 MAX_PRICE = 100.0
 INITIAL_PRICE = 10.0
+FILENAME = "output.txt"
 
+out_file = open(FILENAME, 'w')
 price = INITIAL_PRICE
 number_of_days = 0
-print(f"${price:,.2f}")
+print(f"${price:,.2f}", file=out_file)
 
 while MIN_PRICE <= price <= MAX_PRICE:
     price_change = 0
@@ -34,4 +36,5 @@ while MIN_PRICE <= price <= MAX_PRICE:
 
     price *= (1 + price_change)
     number_of_days += 1
-    print(f"On day {number_of_days} price is: ${price:,.2f}")
+    print(f"On day {number_of_days} price is: ${price:,.2f}", file=out_file)
+out_file.close()
