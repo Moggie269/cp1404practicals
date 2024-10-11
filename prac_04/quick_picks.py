@@ -4,13 +4,14 @@ CP1404/CP5632 Practical
 """
 import random
 
+
 def main():
     """Print lines of values."""
     number_of_quick_picks = int(input('How many quick picks do you want? '))
     for i in range(number_of_quick_picks):
-        values = []
-        generate_random_values(values)
-        for value in values:
+        quick_picks = []
+        generate_random_values(quick_picks)
+        for value in quick_picks:
             print(f'{value:3}', end='')
         print()
 
