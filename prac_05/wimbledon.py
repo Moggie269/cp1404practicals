@@ -10,9 +10,13 @@ def main():
     compile_list(winners)
     compile_dictionary(winner_to_nationality, winners)
     nationalities = compile_set(winner_to_nationality)
+    print('Wimbledon Champions:')
     for winner, nationality in winner_to_nationality.items():
         print(f'{winner} {nationality[1]}')
-    print(sorted(nationalities))
+    print()
+    print('These 12 countries have won Wimbledon:')
+    for nationality in sorted(nationalities):
+        print(nationality, end=', ')
 
 
 def compile_list(winners):
