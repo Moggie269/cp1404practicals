@@ -9,10 +9,13 @@ class Guitar:
 
     def __str__(self):
         """Return string form of guitar instance."""
-        return f'{self.name} ({self.year}) : ${self.cost:,}'
+        return f'{self.name} ({self.year}) : ${self.cost}'
 
     def __repr__(self):
         return str(self)
+
+    def __lt__(self, other):
+        return self.year < other.year
 
     def get_age(self):
         """Calculate age of guitar."""
