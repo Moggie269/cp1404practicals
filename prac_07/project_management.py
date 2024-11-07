@@ -13,15 +13,18 @@ def main():
     """Display menu."""
     print('Welcome to Pythonic Project Management')
     projects = []
-    load_default_projects(projects)
+    load_default_projects(projects, 'projects')
     print(f'Loaded {len(projects)} projects from projects.txt')
     print(MENU)
     choice = input('>>> ').upper()
     while choice != 'Q':
         if choice == 'L':
-            pass
+            projects = []
+            load_file = input('Select file to load from: ')
+            load_default_projects(projects, load_file)
         elif choice == 'S':
-            pass
+            save_file = input('Select file to save to: ')
+            save_default_projects(projects, save_file)
         elif choice == 'D':
             pass
         elif choice == 'F':
@@ -36,13 +39,13 @@ def main():
         choice = input('>>> ').upper()
     save_choice = input('Would you like to save to projects.txt? ').upper()
     if save_choice == 'Y':
-        save_default_projects(projects)
+        save_default_projects(projects, 'projects')
     print('Thank you for using custom-built project management software.')
 
 
-def load_default_projects(projects):
+def load_default_projects(projects, file):
     """Load projects from default file."""
-    with open('projects', 'r') as in_file:
+    with open(file, 'r') as in_file:
         in_file.readline()
         for line in in_file:
             parts = line.strip().split('\t')
@@ -50,9 +53,9 @@ def load_default_projects(projects):
             projects.append(project)
 
 
-def save_default_projects(projects):
+def save_default_projects(projects, file):
     """Save projects to default file."""
-    with open('projects', 'w') as out_file:
+    with open(file, 'w') as out_file:
         out_file.write('Name	Start Date	Priority	Cost Estimate	Completion Percentage\n')
         for project in projects:
             out_file.write(project.__str__())
