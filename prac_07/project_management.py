@@ -26,7 +26,11 @@ def main():
             save_file = input('Select file to save to: ')
             save_default_projects(projects, save_file)
         elif choice == 'D':
-            pass
+            projects.sort()
+            print('Incomplete projects:')
+            display_projects(projects, False)
+            print('Complete projects:')
+            display_projects(projects, True)
         elif choice == 'F':
             pass
         elif choice == 'A':
@@ -49,7 +53,7 @@ def load_default_projects(projects, file):
         in_file.readline()
         for line in in_file:
             parts = line.strip().split('\t')
-            project = Project(parts[0], parts[1], parts[2], parts[3], parts[4])
+            project = Project(parts[0], parts[1], int(parts[2]), float(parts[3]), int(parts[4]))
             projects.append(project)
 
 
@@ -58,8 +62,15 @@ def save_default_projects(projects, file):
     with open(file, 'w') as out_file:
         out_file.write('Name	Start Date	Priority	Cost Estimate	Completion Percentage\n')
         for project in projects:
-            out_file.write(project.__str__())
-            out_file.write('\n')
+            out_file.write(project.__str__() + '\n')
+
+
+def display_projects(projects, completeness):
+    """Display projects."""
+    for project in projects:
+        if project.is_complete() is completeness:
+            print(f'{project.name}, start: {project.start_date}, priority {project.priority}, '
+                  f'estimate: ${project.cost_estimate}, completion: {project.completion_percentage}%')
 
 
 main()
