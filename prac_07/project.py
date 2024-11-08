@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 class Project:
     """Create Project instance."""
 
@@ -20,3 +23,9 @@ class Project:
 
     def is_complete(self):
         return self.completion_percentage >= 100
+
+    def has_started_after_date(self, other):
+        if self.start_date > other:
+            return True
+        else:
+            return False
