@@ -1,7 +1,7 @@
 """
 CP1404/CP5632 Practical - Project Management.
 Estimate time: 30 minutes
-Actual time:
+Actual time: 1 hour 7 minutes +
 """
 import datetime
 from project import Project
@@ -32,7 +32,8 @@ def main():
             print('Complete projects:')
             display_projects(projects, True)
         elif choice == 'F':
-            pass
+            date = get_date()
+            filter_by_date(projects, date)
         elif choice == 'A':
             pass
         elif choice == 'U':
@@ -53,7 +54,8 @@ def load_default_projects(projects, file):
         in_file.readline()
         for line in in_file:
             parts = line.strip().split('\t')
-            project = Project(parts[0], parts[1], int(parts[2]), float(parts[3]), int(parts[4]))
+            date = datetime.datetime.strptime(parts[1], "%d/%m/%Y").date()
+            project = Project(parts[0], date, int(parts[2]), float(parts[3]), int(parts[4]))
             projects.append(project)
 
 
@@ -69,6 +71,21 @@ def display_projects(projects, completeness):
     """Display projects."""
     for project in projects:
         if project.is_complete() is completeness:
+            print(f'{project.name}, start: {project.start_date}, priority {project.priority}, '
+                  f'estimate: ${project.cost_estimate}, completion: {project.completion_percentage}%')
+
+
+def get_date():
+    """Get date."""
+    date_string = input("Date (d/m/yyyy): ")  # e.g., "30/9/2022"
+    date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
+    return date
+
+
+def filter_by_date(projects, date):
+    """Filter projects by date."""
+    for project in projects:
+        if project.has_started_after_date(date):
             print(f'{project.name}, start: {project.start_date}, priority {project.priority}, '
                   f'estimate: ${project.cost_estimate}, completion: {project.completion_percentage}%')
 
