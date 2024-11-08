@@ -35,7 +35,7 @@ def main():
             date = get_date()
             filter_by_date(projects, date)
         elif choice == 'A':
-            pass
+            add_new_project(projects)
         elif choice == 'U':
             pass
         else:
@@ -88,6 +88,29 @@ def filter_by_date(projects, date):
         if project.has_started_after_date(date):
             print(f'{project.name}, start: {project.start_date}, priority {project.priority}, '
                   f'estimate: ${project.cost_estimate}, completion: {project.completion_percentage}%')
+
+
+def add_new_project(projects):
+    """Add new project."""
+    new_project = []
+    name = input("Name: ")
+    start_date = get_date()
+    priority = get_valid_number("Priority: ", int)
+    cost_estimate = get_valid_number("Cost estimate: ", float)
+    percent_complete = get_valid_number("Percent complete: ", int)
+    new_project.append(Project(name, start_date, priority, cost_estimate, percent_complete))
+
+
+def get_valid_number(prompt, variable_type):
+    """Get a valid number."""
+    valid_number = False
+    while valid_number is False:
+        try:
+            number = variable_type(input(prompt))
+            valid_number = True
+        except ValueError:
+            print('Invalid input')
+    return number
 
 
 main()
