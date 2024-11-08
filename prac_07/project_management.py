@@ -1,10 +1,11 @@
 """
 CP1404/CP5632 Practical - Project Management.
 Estimate time: 30 minutes
-Actual time: 1 hour 7 minutes +
+Actual time: 1 hour 7 minutes + 57 minutes
 """
 import datetime
 from project import Project
+
 MENU = ("- (L)oad projects\n- (S)ave projects\n- (D)isplay projects\n- (F)ilter projects by date\n- (A)dd new project\n"
         "- (U)pdate project\n- (Q)uit")
 
@@ -41,7 +42,8 @@ def main():
                 print(f'{i} {project.name}, start: {project.start_date}, priority {project.priority}, '
                       f'estimate: ${project.cost_estimate}, completion: {project.completion_percentage}%')
             choice = int(input('Project choice: '))
-            print(f'{projects[choice].name}, start: {projects[choice].start_date}, priority {projects[choice].priority},'
+            print(
+                f'{projects[choice].name}, start: {projects[choice].start_date}, priority {projects[choice].priority},'
                 f' estimate: ${projects[choice].cost_estimate}, completion: {projects[choice].completion_percentage}%')
             update_project(projects[choice])
         else:
@@ -105,6 +107,7 @@ def add_new_project(projects):
     cost_estimate = get_valid_number("Cost estimate: ", float)
     percent_complete = get_valid_number("Percent complete: ", int)
     new_project.append(Project(name, start_date, priority, cost_estimate, percent_complete))
+    projects.append(new_project)
 
 
 def get_valid_number(prompt, variable_type):
