@@ -37,7 +37,13 @@ def main():
         elif choice == 'A':
             add_new_project(projects)
         elif choice == 'U':
-            pass
+            for i, project in enumerate(projects):
+                print(f'{i} {project.name}, start: {project.start_date}, priority {project.priority}, '
+                      f'estimate: ${project.cost_estimate}, completion: {project.completion_percentage}%')
+            choice = int(input('Project choice: '))
+            print(f'{projects[choice].name}, start: {projects[choice].start_date}, priority {projects[choice].priority},'
+                f' estimate: ${projects[choice].cost_estimate}, completion: {projects[choice].completion_percentage}%')
+            update_project(projects[choice])
         else:
             print('Invalid choice')
         print(MENU)
@@ -111,6 +117,11 @@ def get_valid_number(prompt, variable_type):
         except ValueError:
             print('Invalid input')
     return number
+
+
+def update_project(project):
+    project.percent_complete = get_valid_number("New Percentage: ", int)
+    project.priority = get_valid_number("New Priority: ", int)
 
 
 main()
