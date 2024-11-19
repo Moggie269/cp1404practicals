@@ -7,6 +7,8 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.core.window import Window
 from kivy.properties import StringProperty
+CONVERSION_RATE = 1.60934
+ZERO = 0
 
 
 class MilesToKmConverterApp(App):
@@ -23,11 +25,18 @@ class MilesToKmConverterApp(App):
 
     def handle_calculate(self, value):
         """ handle calculation (could be button press or other call), output result to label widget """
-        result = float(value) * 1.60934
-        self.root.ids.output_label.text = str(result)
+        try:
+            result = float(value) * CONVERSION_RATE
+            self.root.ids.output_label.text = str(result)
+        except ValueError:
+            self.root.ids.output_label.text = f'{ZERO}'
+
 
     def handle_increment(self, value, increment):
-        result = int(value) + int(increment)
+        try:
+            result = int(value) + int(increment)
+        except ValueError:
+            result = ZERO + int(increment)
         self.root.ids.input_number.text = str(result)
 
 
