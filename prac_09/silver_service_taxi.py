@@ -12,7 +12,7 @@ class SilverServiceTaxi(Taxi):
     def __init__(self, name, fuel, fanciness):
         """Initialise a SilverServiceTaxi instance, based on parent class Taxi."""
         super().__init__(name, fuel)
-        self.fanciness = fanciness * self.price_per_km
+        self.price_per_km = fanciness * self.price_per_km
 
     def __str__(self):
         """Return a string like a Taxi but a flagfall is accounted."""
@@ -20,4 +20,4 @@ class SilverServiceTaxi(Taxi):
 
     def get_fare(self):
         """Return the price for the taxi trip."""
-        return self.fanciness * self.current_fare_distance + self.flagfall
+        return self.price_per_km * self.current_fare_distance + self.flagfall
