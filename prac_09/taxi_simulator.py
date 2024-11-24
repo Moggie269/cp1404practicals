@@ -19,21 +19,30 @@ def main():
     while choice != 'Q':
         if choice == 'C':
             print('Taxis available: ')
-            for i, taxi in enumerate(taxis):
-                print(f'{i} - {taxi}')
+            display_available_taxi(taxis)
             current_taxi = get_valid_taxi_choice(taxis)
         elif choice == 'D':
             if current_taxi is None:
                 print('You need to choose a taxi before you can drive')
             else:
                 distance = int(input('Drive how far? '))
-                fare = current_taxi.get_fare(distance)
+                current_taxi.drive(distance)
+                fare = current_taxi.get_fare()
                 bill += fare
+                print(f'Your {current_taxi.name} trip will cost you ${fare:.2f}')
         else:
             print('Invalid option')
         print(f'Bill to date: ${bill:.2f}')
         print(MENU)
         choice = input('>>> ').upper()
+    print(f'Taxis are now:')
+    display_available_taxi(taxis)
+
+
+def display_available_taxi(taxis):
+    """Display available taxi."""
+    for i, taxi in enumerate(taxis):
+        print(f'{i} - {taxi}')
 
 
 def get_valid_taxi_choice(taxis):
