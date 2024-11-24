@@ -12,18 +12,35 @@ def main():
     taxis = [Taxi("Prius", 100), SilverServiceTaxi("Limo", 100, 2),
              SilverServiceTaxi("Hummer", 200, 4)]
     bill_to_date = 0
+    current_taxi = None
     print(MENU)
-    menu_choice = input('>>> ').upper()
-    while menu_choice != 'Q':
-        if menu_choice == 'C':
-            pass
-        elif menu_choice == 'D':
+    choice = input('>>> ').upper()
+    while choice != 'Q':
+        if choice == 'C':
+            print('Taxis available: ')
+            for i, taxi in enumerate(taxis):
+                print(f'{i} - {taxi}')
+            current_taxi = get_valid_taxi_choice(taxis)
+        elif choice == 'D':
             pass
         else:
             print('Invalid option')
         print(f'Bill to date: ${bill_to_date:.2f}')
+        print(current_taxi)
         print(MENU)
-        menu_choice = input('>>> ').upper()
+        choice = input('>>> ').upper()
+
+
+def get_valid_taxi_choice(taxis):
+    """Get a valid taxi choice."""
+    taxi_choice = int(input('Choose taxi: '))
+    try:
+        current_taxi = taxis[taxi_choice]
+        return current_taxi
+    except IndexError:
+        print('Invalid taxi choice')
+
+
 
 if __name__ == '__main__':
     main()
