@@ -5,14 +5,15 @@ Emiliano Mogorovich
 """
 from taxi import Taxi
 from silver_service_taxi import SilverServiceTaxi
-MENU = "Let's drive!\nq)uit, c)hoose taxi, d)rive"
+MENU = "q)uit, c)hoose taxi, d)rive"
 
 def main():
     """Display menu and get menu choice."""
     taxis = [Taxi("Prius", 100), SilverServiceTaxi("Limo", 100, 2),
              SilverServiceTaxi("Hummer", 200, 4)]
-    bill_to_date = 0
+    bill = 0
     current_taxi = None
+    print("Let's drive!")
     print(MENU)
     choice = input('>>> ').upper()
     while choice != 'Q':
@@ -22,11 +23,15 @@ def main():
                 print(f'{i} - {taxi}')
             current_taxi = get_valid_taxi_choice(taxis)
         elif choice == 'D':
-            pass
+            if current_taxi is None:
+                print('You need to choose a taxi before you can drive')
+            else:
+                distance = int(input('Drive how far? '))
+                fare = current_taxi.get_fare(distance)
+                bill += fare
         else:
             print('Invalid option')
-        print(f'Bill to date: ${bill_to_date:.2f}')
-        print(current_taxi)
+        print(f'Bill to date: ${bill:.2f}')
         print(MENU)
         choice = input('>>> ').upper()
 
